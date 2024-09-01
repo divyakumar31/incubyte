@@ -13,4 +13,23 @@ public class BookTest {
     assertTrue(2024 == book.getPublicationYear());
     assertTrue(book.isAvailable());
   }
+
+  @Test
+  public void testNullBook() {
+    // Null Book Title
+    assertThrows(NullPointerException.class, () -> {
+      Book book = new Book(null, "divyakumar", "978 90 274 3964 3", 2024);
+    });
+
+    // Null Book Author
+    assertThrows(NullPointerException.class, () -> {
+      Book book = new Book("MyBook", null, "978 90 274 3964 4", 2024);
+    });
+
+    // Null Book ISBN
+    assertThrows(NullPointerException.class, () -> {
+      Book book = new Book("MyBook", "Divyakumar", null, 2024);
+    });
+  }
+
 }
