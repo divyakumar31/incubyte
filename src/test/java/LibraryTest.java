@@ -55,4 +55,21 @@ public class LibraryTest {
     assertEquals(book2, library.getBooks().get("978 90 274 3964 3"));
     assertEquals("Book added successfully.", returnMessage2);
   }
+
+  @Test
+  public void testBorrowBook() {
+    library.addNewBook(book);
+    Book borrowedBook = library.borrowBook("978 90 274 3964 2");
+    assertFalse(borrowedBook.isAvailable());
+
+    // Borrow unavailable book
+    assertThrows(BookNotAvailableException.class, () -> {
+      library.borrowBook("978 90 274 3964 2");
+    });
+
+    // Borrow a book that is not in the library
+    assertThrows(BookNotFoundException.class, () -> {
+      library.borrowBook("978 90 274 3964 9");
+    });
+  }
 }
