@@ -9,6 +9,7 @@ import com.library.Library;
 public class LibraryTest {
 
   private Book book;
+  private Library library;
 
   @Before
   public void setup() {
@@ -23,5 +24,33 @@ public class LibraryTest {
     Library library2 = new Library(book);
     assertEquals(1, library2.getBooks().size());
     assertEquals(book, library2.getBooks().get("978 90 274 3964 2"));
+  }
+
+  @Before
+  public void setupLibrary() {
+    library = new Library();
+    book = new Book("MyNewBook", "DIVYAKUMAR", "978 90 274 3964 1", 2023);
+  }
+
+  @Test
+  public void testAddNewBook() {
+    String returnMessage = library.addNewBook(book);
+    assertEquals(1, library.getBooks().size());
+    assertEquals(book, library.getBooks().get("978 90 274 3964 1"));
+    assertEquals("Book added successfully.", returnMessage);
+
+    // Add same book
+    assertThrows(DuplicateBookException.class, () -> {
+      library.addNewBook(book);
+    });
+
+    assertEquals(1, library.getBooks().size());
+
+    // Add null book
+    assertThrows(NullPointerException.class, () -> {
+      library.addNewBook(null);
+    });
+
+    assertEquals(1, library.getBooks().size());
   }
 }
