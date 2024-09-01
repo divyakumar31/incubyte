@@ -2,6 +2,8 @@ package com.library;
 
 import java.util.HashMap;
 
+import com.library.Exceptions.BookNotAvailableException;
+import com.library.Exceptions.BookNotFoundException;
 import com.library.Exceptions.DuplicateBookException;
 
 /**
@@ -47,6 +49,29 @@ public class Library {
     }
     books.put(newBook.getIsbn(), newBook);
     return "Book added successfully.";
+  }
+
+  /**
+   * Borrows a book from the library
+   * 
+   * @param isbn - The ISBN of the book to be borrowed
+   * @return - The borrowed book
+   * @throws BookNotFoundException     if the book with the given ISBN is not
+   *                                   found in the library
+   * @throws BookNotAvailableException if the book with the given ISBN is not
+   *                                   available to borrow.
+   */
+  public Book borrowBook(String isbn) {
+    if (books.containsKey(isbn)) {
+      Book book = books.get(isbn);
+      if (book.isAvailable()) {
+        book.setAvailable(false);
+        return book;
+      } else {
+        throw new BookNotAvailableException("Book is not available to borrow.");
+      }
+    }
+    throw new BookNotFoundException("Book not found in library.");
   }
 
 }

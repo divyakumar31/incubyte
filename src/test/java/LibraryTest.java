@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import com.library.Book;
 import com.library.Library;
+import com.library.Exceptions.BookNotAvailableException;
+import com.library.Exceptions.BookNotFoundException;
 import com.library.Exceptions.DuplicateBookException;
 
 public class LibraryTest {
