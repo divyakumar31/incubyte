@@ -86,6 +86,11 @@ public class LibraryTest {
     assertThrows(BookNotFoundException.class, () -> {
       library.returnBorrowedBook("978 90 274 3964 8");
     });
+
+    // Return a book that is already returned
+    assertThrows(BookNotFoundException.class, () -> {
+      library.returnBorrowedBook("978 90 274 3964 2");
+    });
   }
 
   @Test

@@ -86,6 +86,9 @@ public class Library {
   public String returnBorrowedBook(String isbn) {
     if (books.containsKey(isbn)) {
       Book book = books.get(isbn);
+      if (book.isAvailable()) {
+        throw new BookNotFoundException("You can't return a book that is not borrowed.");
+      }
       book.setAvailable(true);
       return "Book returned to library successfully.";
     }
