@@ -1,5 +1,7 @@
 package com.library;
 
+import java.time.Year;
+
 /**
  * Book class
  * 
@@ -28,8 +30,8 @@ public class Book {
     if (title.equals("") || author.equals("") || isbn.equals("")) {
       throw new IllegalArgumentException("Title, author, and ISBN cannot be empty");
     }
-    if (publicationYear < 0) {
-      throw new IllegalArgumentException("Publication year cannot be negative");
+    if (publicationYear < 0 || publicationYear > Year.now().getValue()) {
+      throw new IllegalArgumentException("Publication year cannot be negative or in the future");
     }
     this.title = title;
     this.author = author;
@@ -44,6 +46,12 @@ public class Book {
   }
 
   public void setTitle(String title) {
+    if (title == null) {
+      throw new NullPointerException("Title cannot be null");
+    }
+    if (title.equals("")) {
+      throw new IllegalArgumentException("Title cannot be empty");
+    }
     this.title = title;
   }
 
@@ -52,6 +60,12 @@ public class Book {
   }
 
   public void setAuthor(String author) {
+    if (author == null) {
+      throw new NullPointerException("Author cannot be null");
+    }
+    if (author.equals("")) {
+      throw new IllegalArgumentException("Author cannot be empty");
+    }
     this.author = author;
   }
 
@@ -60,6 +74,12 @@ public class Book {
   }
 
   public void setIsbn(String isbn) {
+    if (isbn == null) {
+      throw new NullPointerException("ISBN cannot be null");
+    }
+    if (isbn.equals("")) {
+      throw new IllegalArgumentException("ISBN cannot be empty");
+    }
     this.isbn = isbn;
   }
 
@@ -68,6 +88,9 @@ public class Book {
   }
 
   public void setPublicationYear(int publicationYear) {
+    if (publicationYear < 0 || publicationYear > Year.now().getValue()) {
+      throw new IllegalArgumentException("Publication year cannot be negative or in the future");
+    }
     this.publicationYear = publicationYear;
   }
 

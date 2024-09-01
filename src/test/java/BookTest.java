@@ -55,5 +55,10 @@ public class BookTest {
     assertThrows(IllegalArgumentException.class, () -> {
       Book book = new Book("MyBook", "Divyakumar", "978 90 274 3964 4", -1900);
     });
+
+    // Future Publication Year
+    assertThrows(IllegalArgumentException.class, () -> {
+      Book book = new Book("MyBook", "Divyakumar", "978 90 274 3964 4", 2025);
+    });
   }
 }
