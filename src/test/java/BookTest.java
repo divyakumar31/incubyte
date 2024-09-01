@@ -32,4 +32,26 @@ public class BookTest {
     });
   }
 
+  @Test
+  public void testEmptyBook() {
+    // Empty Book Title
+    assertThrows(IllegalArgumentException.class, () -> {
+      Book book = new Book("", "divyakumar", "978 90 274 3964 3", 2024);
+    });
+
+    // Empty Book Author
+    assertThrows(IllegalArgumentException.class, () -> {
+      Book book = new Book("MyBook", "", "978 90 274 3964 4", 2024);
+    });
+
+    // Empty Book ISBN
+    assertThrows(IllegalArgumentException.class, () -> {
+      Book book = new Book("MyBook", "Divyakumar", "", 2024);
+    });
+
+    // Negative Publication Year
+    assertThrows(IllegalArgumentException.class, () -> {
+      Book book = new Book("MyBook", "Divyakumar", "978 90 274 3964 4", -1900);
+    });
+  }
 }
