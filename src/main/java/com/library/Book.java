@@ -22,6 +22,9 @@ public class Book {
    * @param publicationYear defines the publication year of the book
    */
   public Book(String title, String author, String isbn, int publicationYear) {
+    if (title == null || author == null || isbn == null) {
+      throw new NullPointerException("Title, author, and ISBN cannot be null");
+    }
     this.title = title;
     this.author = author;
     this.isbn = isbn;
