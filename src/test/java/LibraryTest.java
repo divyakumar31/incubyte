@@ -87,4 +87,26 @@ public class LibraryTest {
       library.returnBorrowedBook("978 90 274 3964 8");
     });
   }
+
+  @Test
+  public void testAvailableBooks() {
+    library.addNewBook(book);
+    assertEquals(1, library.availableBooks().size());
+
+    library.borrowBook("978 90 274 3964 2");
+    assertEquals(0, library.availableBooks().size());
+
+    library.returnBorrowedBook("978 90 274 3964 2");
+    assertEquals(1, library.availableBooks().size());
+
+    library.addNewBook(new Book("MyBook2", "Incubyte", "978 90 274 3964 4", 2020));
+    library.addNewBook(new Book("MyBook3", "Incubyte2", "978 90 274 3964 5", 2021));
+    library.addNewBook(new Book("MyBook4", "Incubyte3", "978 90 274 3964 6", 2022));
+    library.addNewBook(new Book("MyBook5", "Incubyte4", "978 90 274 3964 7", 2023));
+
+    assertEquals(5, library.availableBooks().size());
+
+    library.borrowBook("978 90 274 3964 6");
+    assertEquals(4, library.availableBooks().size());
+  }
 }
