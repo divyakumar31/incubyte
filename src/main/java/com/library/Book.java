@@ -25,6 +25,12 @@ public class Book {
     if (title == null || author == null || isbn == null) {
       throw new NullPointerException("Title, author, and ISBN cannot be null");
     }
+    if (title.equals("") || author.equals("") || isbn.equals("")) {
+      throw new IllegalArgumentException("Title, author, and ISBN cannot be empty");
+    }
+    if (publicationYear < 0) {
+      throw new IllegalArgumentException("Publication year cannot be negative");
+    }
     this.title = title;
     this.author = author;
     this.isbn = isbn;
