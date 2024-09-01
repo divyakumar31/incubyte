@@ -1,6 +1,7 @@
 package com.library;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import com.library.Exceptions.BookNotAvailableException;
 import com.library.Exceptions.BookNotFoundException;
@@ -91,4 +92,18 @@ public class Library {
     throw new BookNotFoundException("You can not return a book that is not in the books list of the library.");
   }
 
+  /**
+   * Gets a list of available books
+   * 
+   * @return - The list of available books
+   */
+  public ArrayList<Book> availableBooks() {
+    ArrayList<Book> availableBooks = new ArrayList<Book>();
+    for (Book book : books.values()) {
+      if (book.isAvailable()) {
+        availableBooks.add(book);
+      }
+    }
+    return availableBooks;
+  }
 }
