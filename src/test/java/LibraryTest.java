@@ -74,4 +74,17 @@ public class LibraryTest {
       library.borrowBook("978 90 274 3964 9");
     });
   }
+
+  @Test
+  public void testReturnBorrowedBook() {
+    library.addNewBook(book);
+    library.borrowBook("978 90 274 3964 2");
+    String returnMessage = library.returnBorrowedBook("978 90 274 3964 2");
+    assertEquals("Book returned to library successfully.", returnMessage);
+
+    // Return a book that is not borrowed
+    assertThrows(BookNotAvailableException.class, () -> {
+      library.returnBorrowedBook("978 90 274 3964 8");
+    });
+  }
 }
