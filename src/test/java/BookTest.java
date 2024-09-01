@@ -14,6 +14,7 @@ public class BookTest {
     assertTrue(book.isAvailable());
   }
 
+  @SuppressWarnings("unused")
   @Test
   public void testNullBook() {
     // Null Book Title
@@ -32,6 +33,7 @@ public class BookTest {
     });
   }
 
+  @SuppressWarnings("unused")
   @Test
   public void testEmptyBook() {
     // Empty Book Title
