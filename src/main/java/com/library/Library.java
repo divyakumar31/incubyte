@@ -74,4 +74,21 @@ public class Library {
     throw new BookNotFoundException("Book not found in library.");
   }
 
+  /**
+   * Returns a borrowed book to the library
+   * 
+   * @param isbn - The ISBN of the book to be returned
+   * @return - "Book returned to library successfully."
+   * @throws BookNotFoundException if the book with the given ISBN is not found in
+   *                               the books list of the library
+   */
+  public String returnBorrowedBook(String isbn) {
+    if (books.containsKey(isbn)) {
+      Book book = books.get(isbn);
+      book.setAvailable(true);
+      return "Book returned to library successfully.";
+    }
+    throw new BookNotFoundException("You can not return a book that is not in the books list of the library.");
+  }
+
 }
