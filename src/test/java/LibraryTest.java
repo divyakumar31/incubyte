@@ -83,7 +83,7 @@ public class LibraryTest {
     assertEquals("Book returned to library successfully.", returnMessage);
 
     // Return a book that is not borrowed
-    assertThrows(BookNotAvailableException.class, () -> {
+    assertThrows(BookNotFoundException.class, () -> {
       library.returnBorrowedBook("978 90 274 3964 8");
     });
   }
