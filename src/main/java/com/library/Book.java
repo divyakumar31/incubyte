@@ -33,6 +33,9 @@ public class Book {
     if (publicationYear < 0 || publicationYear > Year.now().getValue()) {
       throw new IllegalArgumentException("Publication year cannot be negative or in the future");
     }
+    if (isbn.length() != 13) {
+      throw new IllegalArgumentException("ISBN should be the length of 13.");
+    }
     this.title = title;
     this.author = author;
     this.isbn = isbn;

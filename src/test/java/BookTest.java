@@ -61,4 +61,21 @@ public class BookTest {
       Book book = new Book("MyBook", "Divyakumar", "978 90 274 3964 4", 2025);
     });
   }
+
+  @Test
+  public void testISBNLength() {
+    Book book = new Book("t", "a", "123 46 578 9101 2", 2000);
+    assertEquals(13, book.getIsbn().length());
+
+    // ISBN less then length 13
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+      Book book1 = new Book("title", "Author", "123 45 678 9", 2000);
+    });
+
+    assertEquals("ISBN should be the length of 13.", exception.getMessage());
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      Book book1 = new Book("title2", "Author2", "123 45 678 9123 4567", 2000);
+    });
+  }
 }
