@@ -1,6 +1,8 @@
 package com.library;
 
 import java.time.Year;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 /**
  * Book class
@@ -33,7 +35,7 @@ public class Book {
     if (publicationYear < 0 || publicationYear > Year.now().getValue()) {
       throw new IllegalArgumentException("Publication year cannot be negative or in the future");
     }
-    if (isbn.length() != 13) {
+    if (!isValidIsbn(isbn)) {
       throw new IllegalArgumentException("ISBN should be the length of 13.");
     }
     this.title = title;
@@ -105,4 +107,10 @@ public class Book {
     this.isAvailable = isAvailable;
   }
 
+  public boolean isValidIsbn(String isbn) {
+    Pattern pattern = Pattern.compile("^[0-9]{3}[- ][0-9]{2}[- ][0-9]{3}[- ][0-9]{4}[- ][0-9]$",
+        Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(isbn);
+    return matcher.matches();
+  }
 }

@@ -64,8 +64,9 @@ public class BookTest {
 
   @Test
   public void testISBNLength() {
-    Book book = new Book("t", "a", "123 46 578 9101 2", 2000);
-    assertEquals(13, book.getIsbn().length());
+    Book book = new Book("t", "a", "123-46-578-9101-2", 2000);
+
+    Book book2 = new Book("t", "a", "123 46 578 1101 2", 2000);
 
     // ISBN less then length 13
     Exception exception = assertThrows(IllegalArgumentException.class, () -> {
